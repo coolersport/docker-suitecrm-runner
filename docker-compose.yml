@@ -1,0 +1,22 @@
+version: '2'
+services:
+  crm:
+    image: coolersport/suitecrm-runner
+    container_name: crm
+    depends_on:
+    - mysql
+    ports:
+    - '8080:8080'
+    volumes:
+    - ./data/crm:/var/www/html:rw
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    expose:
+    - '3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+    volumes:
+    - ./data/mysql:/var/lib/mysql:rw
