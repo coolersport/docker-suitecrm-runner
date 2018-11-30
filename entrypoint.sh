@@ -16,7 +16,7 @@ if [[ -z `find "$www" -mindepth 1 -print -quit 2>/dev/null` ]]; then
   gosu www-data curl -sSL https://github.com/salesagility/SuiteCRM/archive/v${VERSION}.tar.gz -o $www/v${VERSION}.tar.gz
   gosu www-data tar xvfz $www/v${VERSION}.tar.gz --strip 1 -C $www
   rm -rf v${VERSION}.tar.gz
-  # gosu www-data composer install
+  gosu www-data composer install --no-dev
 fi
 
 if [[ -f "$www/cron.php" ]]; then
